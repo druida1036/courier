@@ -1,0 +1,33 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jmartinez" id="03-create-delivery-bonus-table.xml">
+
+        <addForeignKeyConstraint
+            baseColumnNames="delivery_id"
+            baseTableName="delivery_bonus"
+            constraintName="delivery_bonus_delivery_fk"
+            referencedColumnNames="id"
+            referencedTableName="delivery"
+        />
+        <addUniqueConstraint columnNames="delivery_id, external_bonus_id" tableName="delivery_bonus" />
+        <createTable tableName="delivery_bonus">
+            <column autoIncrement="true" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="delivery_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="external_bonus_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="modified_at" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

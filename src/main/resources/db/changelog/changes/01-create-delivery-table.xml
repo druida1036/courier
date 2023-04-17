@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jmartinez" id="01-create-delivery-table">
+
+        <addUniqueConstraint columnNames="external_delivery_id, courier_id" tableName="delivery" />
+        <createTable tableName="delivery">
+            <column autoIncrement="true" name="id" type="int">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="external_delivery_id" type="int">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="courier_id" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="amount" type="numeric">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

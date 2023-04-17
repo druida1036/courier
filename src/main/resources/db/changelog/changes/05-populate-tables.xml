@@ -1,0 +1,37 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jmartinez" id="04-populate-tables.xml">
+
+        <sql>
+            INSERT INTO delivery (external_delivery_id, courier_id, created_at, amount)
+            VALUES(1, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_ADJUSTMENT (DELIVERY_ID, EXTERNAL_ADJUSTMENT_ID, MODIFIED_AT, AMOUNT )
+            VALUES(1, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_BONUS (DELIVERY_ID, EXTERNAL_BONUS_ID, MODIFIED_AT, AMOUNT )
+            VALUES(1, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO delivery (external_delivery_id, courier_id, created_at, amount)
+            VALUES(2, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_ADJUSTMENT (DELIVERY_ID, EXTERNAL_ADJUSTMENT_ID, MODIFIED_AT, AMOUNT )
+            VALUES(2, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_BONUS (DELIVERY_ID, EXTERNAL_BONUS_ID, MODIFIED_AT, AMOUNT )
+            VALUES(2, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO delivery (external_delivery_id, courier_id, created_at, amount)
+            VALUES(3, 2, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_ADJUSTMENT (DELIVERY_ID, EXTERNAL_ADJUSTMENT_ID, MODIFIED_AT, AMOUNT )
+            VALUES(3, 1, '2023-04-15 21:45:31.166199', 1);
+
+            INSERT INTO DELIVERY_BONUS (DELIVERY_ID, EXTERNAL_BONUS_ID, MODIFIED_AT, AMOUNT )
+            VALUES(3, 1, '2023-04-15 21:45:31.166199', 1);
+        </sql>
+
+
+    </changeSet>
+</databaseChangeLog>

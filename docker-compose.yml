@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  rabbitmq:
+    image: rabbitmq:3.5.3-management
+    container_name: service-rabbitmq
+    hostname: rabbitmq-container
+    expose:
+      - "5672"
+      - "15672"
+      - "61613"
+    ports:
+      - "5670:5672"
+      - "15670:15672"
+      - "61613:61613"
+    networks:
+      - demo-net
+
+  backend:
+    container_name: statement_backend
+    build:
+      dockerfile: Dockerfile
+    image: statements:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rabbitmq
+    environment:
+      - spring_rabbitmq_host=rabbitmq-container
+      - spring_rabbitmq_port=5672
+    networks:
+      - demo-net
+networks:
+  demo-net:

@@ -1,0 +1,15 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="jmartinez" id="04-delivery-records-view">
+        <createView viewName="delivery_records">
+            SELECT D.COURIER_ID, T.* FROM (
+            SELECT DA.DELIVERY_ID AS EXTERNAL_DELIVERY_ID, DA.AMOUNT, DA.MODIFIED_AT AS EVENT_DATE, 'DELIVERY_ADJUSTMENT' AS SOURCE FROM DELIVERY_ADJUSTMENT DA
+            UNION
+            SELECT DB.DELIVERY_ID AS EXTERNAL_DELIVERY_ID, DB.AMOUNT, DB.MODIFIED_AT AS EVENT_DATE, 'DELIVERY_BONUS' AS SOURCE FROM DELIVERY_BONUS DB
+            UNION
+            SELECT D.EXTERNAL_DELIVERY_ID , D.AMOUNT, D.CREATED_AT AS EVENT_DATE, 'DELIVERY' AS SOURCE FROM DELIVERY D) T
+            JOIN DELIVERY D ON D.EXTERNAL_DELIVERY_ID = T.EXTERNAL_DELIVERY_ID
+        </createView>
+    </changeSet>
+</databaseChangeLog>
