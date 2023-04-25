@@ -3,14 +3,6 @@
 
     <changeSet author="jmartinez" id="02-create-delivery-adjustment-table">
 
-        <addForeignKeyConstraint
-            baseColumnNames="delivery_id"
-            baseTableName="delivery_adjustment"
-            constraintName="delivery_adjustment_delivery_fk"
-            referencedColumnNames="id"
-            referencedTableName="delivery"
-        />
-        <addUniqueConstraint columnNames="delivery_id, external_adjustment_id" tableName="delivery_adjustment" />
         <createTable tableName="delivery_adjustment">
             <column autoIncrement="true" name="id" type="int">
                 <constraints nullable="false" primaryKey="true" />
@@ -28,6 +20,14 @@
                 <constraints nullable="false" />
             </column>
         </createTable>
+        <addForeignKeyConstraint
+            baseColumnNames="delivery_id"
+            baseTableName="delivery_adjustment"
+            constraintName="delivery_adjustment_delivery_fk"
+            referencedColumnNames="id"
+            referencedTableName="delivery"
+        />
+        <addUniqueConstraint columnNames="delivery_id, external_adjustment_id" tableName="delivery_adjustment" />
 
     </changeSet>
 </databaseChangeLog>

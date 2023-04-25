@@ -3,7 +3,6 @@
 
     <changeSet author="jmartinez" id="01-create-delivery-table">
 
-        <addUniqueConstraint columnNames="external_delivery_id, courier_id" tableName="delivery" />
         <createTable tableName="delivery">
             <column autoIncrement="true" name="id" type="int">
                 <constraints nullable="false" primaryKey="true" />
@@ -21,6 +20,8 @@
                 <constraints nullable="false" />
             </column>
         </createTable>
+        <addUniqueConstraint columnNames="external_delivery_id, courier_id" tableName="delivery" />
+
 
     </changeSet>
 </databaseChangeLog>
